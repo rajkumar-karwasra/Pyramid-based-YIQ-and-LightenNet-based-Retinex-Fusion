@@ -7,7 +7,7 @@ figure;imshow(enh_I);title(" After LLEH");
 I_pyr = pyramiddec(enh_I,2);
 figure;imshow(mat2gray(I_pyr{1}));title("Detail By Pyramid")
 figure;imshow(I_pyr{2});title("Base By Pymarid");
-yiq = (I_pyr{2});
+yiq = rgb2ntsc(I_pyr{2});
 figure;imshow(yiq);title("YIQ");
 Y=yiq(:,:,1);
 I=yiq(:,:,2);
@@ -31,7 +31,7 @@ Q_final=real(power((Q),1.65-spatial_gama));
 figure,imshow(I_final);title("I final");
 figure,imshow(Q_final);title("Q final");
 YIQ_enh = cat(3,enh_Y,I_final,Q_final);
-enh_base =(YIQ_enh);
+enh_base =ntsc2rgb(YIQ_enh);
 figure;imshow(enh_base);title("Enh base")
 enh_detail =imbilatfilt(I_pyr{1});
 figure;imshow(mat2gray(enh_detail));title("Enh Detail")
